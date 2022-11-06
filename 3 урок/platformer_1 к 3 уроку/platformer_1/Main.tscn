@@ -1,0 +1,92 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://Player.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Platform.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Background.tscn" type="PackedScene" id=3]
+[ext_resource path="res://ammo.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Zombie.tscn" type="PackedScene" id=5]
+
+[node name="Main" type="Node2D"]
+
+[node name="Player" parent="." instance=ExtResource( 1 )]
+position = Vector2( 230.012, 377.642 )
+
+[node name="Background" parent="." instance=ExtResource( 3 )]
+
+[node name="Platform" parent="." instance=ExtResource( 2 )]
+position = Vector2( 244.99, 584.527 )
+
+[node name="Platform2" parent="." instance=ExtResource( 2 )]
+position = Vector2( 124.211, 584.527 )
+
+[node name="Platform3" parent="." instance=ExtResource( 2 )]
+position = Vector2( 365.769, 584.527 )
+
+[node name="Platform4" parent="." instance=ExtResource( 2 )]
+position = Vector2( 484.429, 584.527 )
+
+[node name="Platform5" parent="." instance=ExtResource( 2 )]
+position = Vector2( 594.613, 584.527 )
+
+[node name="Platform6" parent="." instance=ExtResource( 2 )]
+position = Vector2( 715.392, 584.527 )
+
+[node name="Platform7" parent="." instance=ExtResource( 2 )]
+position = Vector2( 831.304, 584.527 )
+
+[node name="Platform8" parent="." instance=ExtResource( 2 )]
+position = Vector2( 1069.92, 587.196 )
+
+[node name="Platform9" parent="." instance=ExtResource( 2 )]
+position = Vector2( 949.142, 587.196 )
+
+[node name="Platform10" parent="." instance=ExtResource( 2 )]
+position = Vector2( 1190.7, 587.196 )
+
+[node name="Platform11" parent="." instance=ExtResource( 2 )]
+position = Vector2( 1309.36, 587.196 )
+
+[node name="Platform23" parent="." instance=ExtResource( 2 )]
+position = Vector2( 1317.85, 541.941 )
+
+[node name="Platform24" parent="." instance=ExtResource( 2 )]
+position = Vector2( 1317.85, 496.686 )
+
+[node name="Platform12" parent="." instance=ExtResource( 2 )]
+position = Vector2( 1419.54, 587.196 )
+
+[node name="Platform13" parent="." instance=ExtResource( 2 )]
+position = Vector2( 1540.32, 587.196 )
+
+[node name="Platform14" parent="." instance=ExtResource( 2 )]
+position = Vector2( 1656.24, 587.196 )
+
+[node name="Platform15" parent="." instance=ExtResource( 2 )]
+position = Vector2( 467.673, 404.118 )
+
+[node name="Platform16" parent="." instance=ExtResource( 2 )]
+position = Vector2( 588.452, 405.453 )
+
+[node name="Platform17" parent="." instance=ExtResource( 2 )]
+position = Vector2( 707.112, 405.453 )
+
+[node name="Platform18" parent="." instance=ExtResource( 2 )]
+position = Vector2( 817.296, 405.453 )
+
+[node name="Platform19" parent="." instance=ExtResource( 2 )]
+position = Vector2( 938.075, 405.453 )
+
+[node name="Platform20" parent="." instance=ExtResource( 2 )]
+position = Vector2( 1053.99, 405.453 )
+
+[node name="Platform21" parent="." instance=ExtResource( 2 )]
+position = Vector2( 510.499, 220.749 )
+
+[node name="ammo" parent="." instance=ExtResource( 4 )]
+position = Vector2( 448.759, 309.333 )
+
+[node name="Platform22" parent="." instance=ExtResource( 2 )]
+position = Vector2( 1092, 353.959 )
+
+[node name="Zombie" parent="." instance=ExtResource( 5 )]
+position = Vector2( 930.553, 316.784 )

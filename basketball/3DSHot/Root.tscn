@@ -1,0 +1,86 @@
+[gd_scene load_steps=13 format=2]
+
+[ext_resource path="res://glass.tres" type="Material" id=1]
+[ext_resource path="res://Player.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Control.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Box.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Box_interactive.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Ball.tscn" type="PackedScene" id=6]
+[ext_resource path="res://basket.tscn" type="PackedScene" id=7]
+[ext_resource path="res://target.tscn" type="PackedScene" id=8]
+
+[sub_resource type="PlaneMesh" id=1]
+
+[sub_resource type="PhysicsMaterial" id=3]
+friction = 0.46
+bounce = 0.74
+
+[sub_resource type="ConcavePolygonShape" id=2]
+data = PoolVector3Array( 1, 0, 1, -1, 0, 1, 1, 0, -1, -1, 0, 1, -1, 0, -1, 1, 0, -1 )
+
+[sub_resource type="BoxShape" id=4]
+
+[node name="Root" type="Spatial"]
+
+[node name="Mir" type="MeshInstance" parent="."]
+transform = Transform( 10, 0, 0, 0, 10, 0, 0, 0, 10, 0, -4, 0 )
+mesh = SubResource( 1 )
+material/0 = ExtResource( 1 )
+
+[node name="StaticBody" type="StaticBody" parent="Mir"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00909357, -0.0181541, -0.0102815 )
+physics_material_override = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="Mir/StaticBody"]
+shape = SubResource( 2 )
+
+[node name="CollisionShape2" type="CollisionShape" parent="Mir/StaticBody"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 0.181762, -0.0360501, 0.714496, 1.13474 )
+shape = SubResource( 4 )
+
+[node name="CollisionShape3" type="CollisionShape" parent="Mir/StaticBody"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 0.181762, -0.0360501, 0.714496, -1.03789 )
+shape = SubResource( 4 )
+
+[node name="CollisionShape4" type="CollisionShape" parent="Mir/StaticBody"]
+transform = Transform( -4.37114e-08, 0, 0.181762, 0, 1, 0, -1, 0, -7.94509e-09, -1.24556, 0.714496, -0.0529391 )
+shape = SubResource( 4 )
+
+[node name="CollisionShape5" type="CollisionShape" parent="Mir/StaticBody"]
+transform = Transform( -4.37114e-08, 0, 0.181762, 0, 1, 0, -1, 0, -7.94509e-09, 1.1788, 0.714496, -0.0529391 )
+shape = SubResource( 4 )
+
+[node name="Player" parent="." instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2.08962, 0.966148, 3.3097 )
+
+[node name="Control" parent="." instance=ExtResource( 3 )]
+
+[node name="Box" parent="." instance=ExtResource( 4 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -7.84327, -2.37515, 8.46256 )
+
+[node name="Box2" parent="." instance=ExtResource( 4 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -7.84327, -0.163717, 8.46256 )
+
+[node name="Box3" parent="." instance=ExtResource( 4 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -7.84327, 2.06701, 8.46256 )
+
+[node name="Box4" parent="." instance=ExtResource( 4 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -7.84327, 4.32696, 8.46256 )
+
+[node name="Box5" parent="." instance=ExtResource( 4 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -7.84327, 6.81052, 8.46256 )
+
+[node name="Box6" parent="." instance=ExtResource( 5 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.78769, 2.1269, -5.60309 )
+
+[node name="Box7" parent="." instance=ExtResource( 5 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.145496, -1.1514, 4.44615 )
+
+[node name="Ball" parent="." instance=ExtResource( 6 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -4.44136, 13.2202, 3.48625 )
+
+[node name="Basket" parent="." instance=ExtResource( 7 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.46596, 2.24268, -9.38256 )
+
+[node name="target" parent="Basket" instance=ExtResource( 8 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.106663, -0.648373, 1.43417 )

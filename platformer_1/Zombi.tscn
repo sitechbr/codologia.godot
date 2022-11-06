@@ -1,0 +1,55 @@
+[gd_scene load_steps=12 format=2]
+
+[ext_resource path="res://sprites/zombi2.png" type="Texture" id=1]
+[ext_resource path="res://sprites/zombi1.png" type="Texture" id=2]
+[ext_resource path="res://sprites/zombi3.png" type="Texture" id=3]
+[ext_resource path="res://sprites/zombi4.png" type="Texture" id=4]
+[ext_resource path="res://Zombi.gd" type="Script" id=5]
+[ext_resource path="res://sprites/zombi_dead3.png" type="Texture" id=6]
+[ext_resource path="res://sprites/zombi_dead1.png" type="Texture" id=7]
+[ext_resource path="res://sprites/zombi_dead2.png" type="Texture" id=8]
+
+[sub_resource type="SpriteFrames" id=1]
+animations = [ {
+"frames": [ ExtResource( 2 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 2 ), ExtResource( 1 ), ExtResource( 3 ), ExtResource( 4 ) ],
+"loop": true,
+"name": "zombi_move",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 7 ), ExtResource( 8 ), ExtResource( 6 ) ],
+"loop": false,
+"name": "zombi_dead",
+"speed": 5.0
+} ]
+
+[sub_resource type="RectangleShape2D" id=3]
+extents = Vector2( 17.5039, 36.894 )
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 14.7542, 37.4932 )
+
+[node name="Zombi" type="KinematicBody2D"]
+scale = Vector2( 0.6, 0.6 )
+script = ExtResource( 5 )
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+position = Vector2( 0.371208, 0 )
+scale = Vector2( 0.6, 0.6 )
+frames = SubResource( 1 )
+animation = "zombi_dead"
+
+[node name="Area2D" type="Area2D" parent="."]
+position = Vector2( 3.74577, 5.99323 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource( 3 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( 3.74577, 5.99323 )
+shape = SubResource( 2 )
+[connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_body_entered"]

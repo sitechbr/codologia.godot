@@ -1,0 +1,50 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://sprites/player.png" type="Texture" id=1]
+[ext_resource path="res://Player.gd" type="Script" id=2]
+[ext_resource path="res://sprites/player_run.png" type="Texture" id=3]
+[ext_resource path="res://sprites/player_shoot.png" type="Texture" id=4]
+
+[sub_resource type="SpriteFrames" id=1]
+animations = [ {
+"frames": [ ExtResource( 1 ) ],
+"loop": true,
+"name": "idle",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 1 ), ExtResource( 4 ) ],
+"loop": false,
+"name": "shoot",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 1 ), ExtResource( 3 ) ],
+"loop": true,
+"name": "move",
+"speed": 5.0
+} ]
+
+[sub_resource type="CapsuleShape2D" id=2]
+radius = 20.8181
+height = 82.0198
+
+[node name="Player" type="KinematicBody2D"]
+script = ExtResource( 2 )
+
+[node name="Player" type="AnimatedSprite" parent="."]
+scale = Vector2( 0.5, 0.5 )
+frames = SubResource( 1 )
+animation = "idle"
+
+[node name="Camera2D" type="Camera2D" parent="Player"]
+position = Vector2( 44.501, -3.97125 )
+scale = Vector2( 2, 2 )
+current = true
+smoothing_enabled = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( -18.9047, 3.15817 )
+shape = SubResource( 2 )
+
+[node name="Position2D" type="Position2D" parent="."]
+position = Vector2( 56.049, -19.116 )
+[connection signal="animation_finished" from="Player" to="." method="_on_Player_animation_finished"]

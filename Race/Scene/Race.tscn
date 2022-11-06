@@ -1,0 +1,43 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://object/track.obj" type="ArrayMesh" id=1]
+[ext_resource path="res://object/Car.tscn" type="PackedScene" id=2]
+
+[sub_resource type="GDScript" id=2]
+script/source = "extends Spatial
+
+
+func _input(event):
+	if event.is_action_pressed(\"ui_cancel\"):
+		get_tree().change_scene(\"res://Scene/StartMenu.tscn\")
+"
+
+[sub_resource type="BoxShape" id=3]
+extents = Vector3( 1.55735, 1, 1 )
+
+[node name="Race" type="Spatial"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 24.1973, 18.8322, 0 )
+script = SubResource( 2 )
+
+[node name="10605_Slot_Car_Race_Track_v1_L3" type="MeshInstance" parent="."]
+transform = Transform( 0.999998, -0.00214675, 2.55998e-11, 0, 1.19249e-08, 1, -0.00214675, -0.999998, 1.19249e-08, -26.6144, -23.8252, -29.1151 )
+mesh = ExtResource( 1 )
+material/0 = null
+
+[node name="StaticBody" type="StaticBody" parent="10605_Slot_Car_Race_Track_v1_L3"]
+
+[node name="CollisionShape" type="CollisionShape" parent="10605_Slot_Car_Race_Track_v1_L3/StaticBody"]
+transform = Transform( 22.3478, 0.0961461, -1.14653e-09, 0.0961453, 67.1342, -7.81652e-07, -1.14652e-09, -7.8165e-07, 1.58651, -2.06127, 0.00442505, 0 )
+shape = SubResource( 3 )
+
+[node name="Car" parent="." instance=ExtResource( 2 )]
+transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -5.16491, -22.0074, -25.2246 )
+
+[node name="Cam" type="Position3D" parent="Car"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.90735e-06, 6.50307, 21.4113 )
+
+[node name="InterpolatedCamera" type="InterpolatedCamera" parent="."]
+transform = Transform( 0.999993, -0.00257552, -0.00268536, 0.00259286, 0.999976, 0.00647386, 0.00266862, -0.00648078, 0.999975, 0, 0, 0 )
+target = NodePath("../Car/Cam")
+speed = 10.0
+enabled = true

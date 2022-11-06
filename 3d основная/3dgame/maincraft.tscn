@@ -1,0 +1,118 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://CameraAction.anim" type="Animation" id=1]
+[ext_resource path="res://Cube.mesh" type="ArrayMesh" id=2]
+[ext_resource path="res://RUN.anim" type="Animation" id=3]
+[ext_resource path="res://LightAction.anim" type="Animation" id=4]
+
+[sub_resource type="GDScript" id=1]
+script/source = "extends KinematicBody
+
+const GRAVITY =10
+var speed = 200
+var vel = Vector3()
+
+
+func _physics_process(delta):
+	
+	$AnimationPlayer.play(\"RUN\")
+	
+	vel.x = speed*delta
+	vel.z = speed*delta
+	vel.y -= GRAVITY*delta			
+	vel = move_and_slide(vel,Vector3(0,1,0))
+	
+	if is_on_wall():
+		speed*=-1 	
+		
+"
+
+[sub_resource type="Skin" id=2]
+bind_count = 7
+bind/0/name = "bone"
+bind/0/bone = -1
+bind/0/pose = Transform( -0.168241, -0.985746, -6.8783e-08, 0.985746, -0.168241, 4.8727e-08, -7.37969e-08, -7.81046e-08, 1, -0.890635, 2.91471, -2.48896e-07 )
+bind/1/name = "bone_1"
+bind/1/bone = -1
+bind/1/pose = Transform( 0.999925, 0.0121942, 1.11927e-07, -0.0121944, 0.999926, 1.16023e-07, -1.24696e-07, -1.3588e-07, 1, 0.198857, 0.869025, -3.08822e-07 )
+bind/2/name = "bone_2"
+bind/2/bone = -1
+bind/2/pose = Transform( 0.997199, -0.0747899, 2.21504e-08, 0.0747898, 0.997199, 1.14473e-07, -4.48421e-08, -1.30996e-07, 1, 0.358298, -1.81821, -3.00135e-07 )
+bind/3/name = "bone_4"
+bind/3/bone = -1
+bind/3/pose = Transform( 0.999954, 3.60039e-09, 5.1861e-08, -1.13859e-06, -0.999905, -0.0137478, -0.000104077, 0.0137484, -0.999847, -2.94873e-07, 1.2393, -2.75212 )
+bind/4/name = "bone_6"
+bind/4/bone = -1
+bind/4/pose = Transform( 0.999933, -1.06097e-08, -3.22427e-07, -1.72388e-06, -0.999905, 0.0137472, 0.000150505, -0.0137481, -0.99982, 4.23269e-07, 1.26794, 2.67367 )
+bind/5/name = "bone_5"
+bind/5/bone = -1
+bind/5/pose = Transform( 1, -6.45412e-08, 2.77268e-07, 4.15805e-08, -0.995947, -0.0899377, 2.94769e-07, 0.0899377, -0.995947, -6.02951e-07, -2.61228, -0.762831 )
+bind/6/name = "bone_7"
+bind/6/bone = -1
+bind/6/pose = Transform( 1, 5.00355e-08, 2.82318e-07, -4.22507e-08, -0.995948, 0.0899379, 3.0219e-07, -0.0899378, -0.995947, -8.48469e-07, -2.57776, 0.686858 )
+
+[sub_resource type="CapsuleShape" id=3]
+
+[node name="maincraft" type="KinematicBody"]
+script = SubResource( 1 )
+
+[node name="Light" type="Spatial" parent="."]
+transform = Transform( -0.290865, 0.566393, 0.771101, -0.0551891, 0.794672, -0.604525, -0.955171, -0.218391, -0.199883, 4.07625, 5.90386, -1.00545 )
+
+[node name="Camera" type="Spatial" parent="."]
+transform = Transform( 0.685921, 0.651558, 0.324014, 0, 0.445271, -0.895396, -0.727676, 0.61417, 0.305421, 7.35889, 4.95831, 6.92579 )
+
+[node name="Spatial" type="Spatial" parent="."]
+
+[node name="Skeleton" type="Skeleton" parent="Spatial"]
+bones/0/name = "bone"
+bones/0/parent = -1
+bones/0/rest = Transform( -0.168241, 0.985746, -5.57384e-08, -0.985746, -0.168241, -7.72645e-08, -8.55407e-08, 4.19448e-08, 1, -3.02301, -0.387565, -4.4634e-09 )
+bones/0/enabled = true
+bones/0/bound_children = [  ]
+bones/1/name = "bone_1"
+bones/1/parent = 0
+bones/1/rest = Transform( -0.180249, -0.983621, 6.55148e-08, 0.983621, -0.180249, -4.04536e-08, 5.16e-08, 5.715e-08, 1, -2.13124e-08, 2.87575, 1.1427e-14 )
+bones/1/enabled = true
+bones/1/bound_children = [  ]
+bones/2/name = "bone_2"
+bones/2/parent = 1
+bones/2/rest = Transform( 0.996213, 0.0869445, 7.99077e-08, -0.0869445, 0.996213, 3.9097e-09, -7.92652e-08, -1.08424e-08, 1, 2.30502e-08, 2.7115, 5.93264e-14 )
+bones/2/enabled = true
+bones/2/bound_children = [  ]
+bones/3/name = "bone_4"
+bones/3/parent = 1
+bones/3/rest = Transform( 0.999972, -0.0121934, 0.000115517, -0.0121944, -0.999831, 0.0137485, -5.21426e-05, -0.0137481, -0.999964, 0.21443, 2.14595, -2.73498 )
+bones/3/enabled = true
+bones/3/bound_children = [  ]
+bones/4/name = "bone_6"
+bones/4/parent = 1
+bones/4/rest = Transform( 0.999993, -0.0121935, -9.26667e-05, -0.0121944, -0.999831, -0.013749, 7.49953e-05, 0.0137479, -0.999991, 0.214766, 2.17351, 2.65621 )
+bones/4/enabled = true
+bones/4/bound_children = [  ]
+bones/5/name = "bone_5"
+bones/5/parent = 0
+bones/5/rest = Transform( -0.0419701, 0.995527, -0.0846408, 0.998901, 0.0400392, -0.0243826, -0.0208846, -0.0855711, -0.996113, 1.60635, 3.34088, -0.994682 )
+bones/5/enabled = true
+bones/5/bound_children = [  ]
+bones/6/name = "bone_7"
+bones/6/parent = 0
+bones/6/rest = Transform( -0.0178089, 0.995789, 0.0899253, 0.999842, 0.0177367, 0.00160166, -6.70552e-08, 0.0899395, -0.995947, 1.57919, 3.33625, 0.915912 )
+bones/6/enabled = true
+bones/6/bound_children = [  ]
+
+[node name="Cube" type="MeshInstance" parent="Spatial/Skeleton"]
+mesh = ExtResource( 2 )
+skin = SubResource( 2 )
+material/0 = null
+material/1 = null
+material/2 = null
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/CameraAction = ExtResource( 1 )
+anims/LightAction = ExtResource( 4 )
+anims/RUN = ExtResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="."]
+transform = Transform( -3.65673, 0, 0, 0, -6.40598, 0, 0, 0, -1.43902, -0.167972, -3.26779, -0.0661049 )
+shape = SubResource( 3 )

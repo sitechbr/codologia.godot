@@ -1,0 +1,60 @@
+[gd_scene load_steps=6 format=2]
+
+[sub_resource type="GDScript" id=6]
+script/source = "extends Area
+
+var speed_rotation =1
+
+func _physics_process(delta):
+	$CSGTorus.rotation_degrees.x+=speed_rotation
+	
+
+func _on_Coin_body_entered(body):
+	queue_free() 
+"
+
+[sub_resource type="SpatialMaterial" id=1]
+albedo_color = Color( 0.843137, 0.988235, 0, 1 )
+
+[sub_resource type="VisualShader" id=4]
+code = "shader_type spatial;
+render_mode specular_schlick_ggx;
+
+
+
+
+void vertex() {
+// Output:0
+
+}
+
+void fragment() {
+// Output:0
+
+}
+
+void light() {
+// Output:0
+
+}
+"
+
+[sub_resource type="ShaderMaterial" id=3]
+next_pass = SubResource( 1 )
+shader = SubResource( 4 )
+
+[sub_resource type="CylinderShape" id=5]
+
+[node name="Coin" type="Area"]
+transform = Transform( -1.62921e-09, -0.01, 0, 0.01, -1.62921e-09, 0, 0, 0, 0.01, 0, 0, 0 )
+script = SubResource( 6 )
+
+[node name="CSGTorus" type="CSGTorus" parent="."]
+transform = Transform( 0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0, 0 )
+outer_radius = 2.92452
+material = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="."]
+transform = Transform( 0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 1.11022e-16, 0.0049684, 0 )
+shape = SubResource( 5 )
+[connection signal="body_entered" from="." to="." method="_on_Coin_body_entered"]

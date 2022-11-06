@@ -1,0 +1,107 @@
+[gd_scene load_steps=4 format=2]
+
+[sub_resource type="GDScript" id=3]
+script/source = "extends KinematicBody
+
+const SPEED =10 
+const JUMP = 40
+const ROTATE = 0.0005
+const GRAVITY = 2
+const BULLET = preload (\"res://Bullet.tscn\")
+var cast =null
+var object = null
+
+var vel = Vector3()
+onready var head =$Head 
+onready var ray = $Head/Camera/RayCast
+
+func _ready():
+	G.Player=self
+	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+	
+func _physics_process(delta):
+	vel.x = 0
+	vel.z = 0
+	if Input.is_action_just_pressed(\"ui_cancel\"):
+		get_tree().quit()
+	if Input.is_action_pressed(\"ui_up\"):
+		vel.z -= SPEED
+	if Input.is_action_pressed(\"ui_down\"):
+		vel.z += SPEED
+	if Input.is_action_pressed(\"ui_right\"):
+		vel.x += SPEED
+	if Input.is_action_pressed(\"ui_left\"):
+		vel.x -= SPEED
+	if Input.is_action_just_pressed(\"ui_select\") and is_on_floor():
+		vel.y += JUMP
+	if vel.x || vel.z:
+		vel = vel.rotated(Vector3.UP, rotation.y)
+	
+	vel.y -= GRAVITY
+	
+	vel = move_and_slide(vel, Vector3.UP,  false, 4,  0.785398, false)
+
+func _input(event):
+	if event is InputEventMouseMotion:
+		rotation.y -= event.relative.x*ROTATE
+		$Head.rotation.x = clamp($Head.rotation.x-event.relative.y*ROTATE,-1.4,1.4)
+		
+		
+	if event is InputEventMouseButton and event.is_pressed():
+		if event.button_index == BUTTON_LEFT:
+			fire()
+	if event is InputEventKey:
+		if event.is_action_pressed(\"ui_F\"):
+			cast = ray.get_collider()
+			#print(cast)
+			if cast is Interactive:
+				if object:
+					object.drop()
+				object=cast
+				
+				cast.take($Head/target)
+			else:
+				if object:
+					object.drop()
+					object=null
+		if event.is_action_pressed(\"ui_g\"):
+			if object:
+				object.push()
+				object=null
+func fire():
+	var bullet =BULLET.instance()
+	bullet.global_transform=$Head/Position3D.global_transform
+	G.add(bullet)
+"
+
+[sub_resource type="CapsuleShape" id=1]
+
+[sub_resource type="CubeMesh" id=2]
+
+[node name="Player" type="KinematicBody"]
+script = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="."]
+transform = Transform( 1, 0, 0, 0, -1.62921e-07, -1, 0, 1, -1.62921e-07, 0, 0, 0 )
+shape = SubResource( 1 )
+
+[node name="Head" type="Spatial" parent="."]
+
+[node name="Camera" type="Camera" parent="Head"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.36773, 0.472179 )
+
+[node name="RayCast" type="RayCast" parent="Head/Camera"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0880971, 0.0249048, -0.472179 )
+enabled = true
+cast_to = Vector3( 0, 0, -5 )
+
+[node name="MeshInstance" type="MeshInstance" parent="Head"]
+transform = Transform( 0.1, 0, 0, 0, 0.1, 0, 0, 0, 1, 0.454641, 0.499431, -0.743244 )
+mesh = SubResource( 2 )
+material/0 = null
+
+[node name="Position3D" type="Position3D" parent="Head"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.451667, 0.520573, -1.7616 )
+
+[node name="target" type="Position3D" parent="Head"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.80984, 0.309396, -2.43689 )

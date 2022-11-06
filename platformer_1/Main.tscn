@@ -1,0 +1,119 @@
+[gd_scene load_steps=10 format=2]
+
+[ext_resource path="res://Player.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Platform.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Ammo.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Zombi.tscn" type="PackedScene" id=4]
+[ext_resource path="res://sprites/firewatch-campo-santo-kholmy-vid-les-igra-peizazh-gory-poz-6.jpg" type="Texture" id=5]
+[ext_resource path="res://Stats.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Main.gd" type="Script" id=7]
+[ext_resource path="res://Heart.tscn" type="PackedScene" id=8]
+[ext_resource path="res://OutZone.tscn" type="PackedScene" id=9]
+
+[node name="Main" type="Node2D"]
+script = ExtResource( 7 )
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+
+[node name="firewatch-campo-santo-kholmy-vid-les-igra-peizazh-gory-poz-6" type="Sprite" parent="ParallaxBackground"]
+position = Vector2( 901.181, 254.721 )
+texture = ExtResource( 5 )
+
+[node name="Player" parent="." instance=ExtResource( 1 )]
+position = Vector2( 135.577, 384.769 )
+
+[node name="Platform" parent="." instance=ExtResource( 2 )]
+position = Vector2( 244.99, 584.527 )
+
+[node name="Platform2" parent="." instance=ExtResource( 2 )]
+position = Vector2( 126.589, 555.986 )
+
+[node name="Platform3" parent="." instance=ExtResource( 2 )]
+position = Vector2( 365.769, 584.527 )
+
+[node name="Platform21" parent="." instance=ExtResource( 2 )]
+position = Vector2( 271.334, 461.583 )
+
+[node name="Platform4" parent="." instance=ExtResource( 2 )]
+position = Vector2( 484.429, 584.527 )
+
+[node name="Platform5" parent="." instance=ExtResource( 2 )]
+position = Vector2( 594.613, 584.527 )
+
+[node name="Platform6" parent="." instance=ExtResource( 2 )]
+position = Vector2( 715.392, 584.527 )
+
+[node name="Platform7" parent="." instance=ExtResource( 2 )]
+position = Vector2( 831.304, 552.435 )
+
+[node name="Platform8" parent="." instance=ExtResource( 2 )]
+position = Vector2( 1069.92, 587.196 )
+
+[node name="Platform9" parent="." instance=ExtResource( 2 )]
+position = Vector2( 949.142, 587.196 )
+
+[node name="Platform10" parent="." instance=ExtResource( 2 )]
+position = Vector2( 1190.7, 587.196 )
+
+[node name="Platform11" parent="." instance=ExtResource( 2 )]
+position = Vector2( 1309.36, 587.196 )
+
+[node name="Platform12" parent="." instance=ExtResource( 2 )]
+position = Vector2( 1419.54, 587.196 )
+
+[node name="Platform13" parent="." instance=ExtResource( 2 )]
+position = Vector2( 1540.32, 587.196 )
+
+[node name="Platform14" parent="." instance=ExtResource( 2 )]
+position = Vector2( 1654.35, 553.216 )
+
+[node name="Platform15" parent="." instance=ExtResource( 2 )]
+position = Vector2( 467.673, 404.118 )
+
+[node name="Ammo" parent="Platform15" instance=ExtResource( 3 )]
+position = Vector2( 51.8911, -44.6724 )
+
+[node name="Ammo2" parent="Platform15" instance=ExtResource( 3 )]
+position = Vector2( -28.2683, -37.1809 )
+
+[node name="Ammo3" parent="Platform15" instance=ExtResource( 3 )]
+position = Vector2( 177, -64.8996 )
+
+[node name="Ammo4" parent="Platform15" instance=ExtResource( 3 )]
+position = Vector2( 390.509, -73.1403 )
+
+[node name="Ammo5" parent="Platform15" instance=ExtResource( 3 )]
+position = Vector2( 253.413, -80.6318 )
+
+[node name="Platform16" parent="." instance=ExtResource( 2 )]
+position = Vector2( 588.452, 405.453 )
+
+[node name="Platform17" parent="." instance=ExtResource( 2 )]
+position = Vector2( 707.112, 384.688 )
+
+[node name="Platform18" parent="." instance=ExtResource( 2 )]
+position = Vector2( 817.296, 384.688 )
+
+[node name="Platform19" parent="." instance=ExtResource( 2 )]
+position = Vector2( 941.851, 379.025 )
+
+[node name="Heart" parent="Platform19" instance=ExtResource( 8 )]
+position = Vector2( -380.746, -82.916 )
+
+[node name="Platform20" parent="." instance=ExtResource( 2 )]
+position = Vector2( 1053.99, 405.453 )
+
+[node name="Zombi" parent="." instance=ExtResource( 4 )]
+position = Vector2( 604.46, 517.133 )
+
+[node name="Zombi2" parent="." instance=ExtResource( 4 )]
+position = Vector2( 1266.71, 505.146 )
+
+[node name="Stats" parent="." instance=ExtResource( 6 )]
+position = Vector2( 632.648, 125.556 )
+
+[node name="OutZone" parent="." instance=ExtResource( 9 )]
+position = Vector2( -221.456, 685.202 )
+
+[node name="OutZone2" parent="." instance=ExtResource( 9 )]
+position = Vector2( 1059.52, 671.34 )

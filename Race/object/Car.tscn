@@ -1,0 +1,123 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://object/car.obj" type="ArrayMesh" id=1]
+[ext_resource path="res://object/wheel.obj" type="ArrayMesh" id=2]
+
+[sub_resource type="GDScript" id=3]
+script/source = "extends VehicleBody
+const SPEED = 200
+const ROT =0.4
+
+var speed =0
+var rot=0
+
+func _physics_process(delta):
+	var need_speed =0
+	var need_rot =0
+	if Input.is_action_pressed(\"ui_right\"):
+		need_rot = -ROT
+	if Input.is_action_pressed(\"ui_left\"):
+		need_rot = ROT	
+	
+	if Input.is_action_pressed(\"ui_up\"):
+		need_speed = SPEED
+	if Input.is_action_pressed(\"ui_down\"):
+		need_speed = -SPEED
+	
+		
+	rot = lerp(rot,need_rot,0.1)
+	speed = lerp(speed,need_speed,0.1)
+	engine_force = speed
+	steering =rot
+"
+
+[sub_resource type="BoxShape" id=1]
+
+[sub_resource type="SpatialMaterial" id=2]
+albedo_color = Color( 0.678711, 0.0125933, 0.0125933, 1 )
+
+[sub_resource type="SpatialMaterial" id=4]
+albedo_color = Color( 0.301961, 0.0431373, 0.0431373, 1 )
+
+[node name="Car" type="VehicleBody"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0370342, -0.11129 )
+script = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="."]
+transform = Transform( 0.808622, 0, 0, 0, 0.488941, 0, 0, 0, 1.8886, 0, 1.11038, 5.96046e-08 )
+shape = SubResource( 1 )
+
+[node name="2104" type="MeshInstance" parent="."]
+transform = Transform( 1.99992, -0.0116705, -0.0140244, 0.0117449, 1.99994, 0.0105936, 0.0139621, -0.0106755, 1.99992, 0, 0, 0 )
+mesh = ExtResource( 1 )
+material/0 = SubResource( 2 )
+material/1 = null
+material/2 = null
+material/3 = null
+material/4 = null
+material/5 = null
+material/6 = null
+material/7 = null
+material/8 = null
+material/9 = null
+material/10 = null
+material/11 = null
+material/12 = null
+material/13 = null
+material/14 = null
+material/15 = null
+material/16 = null
+material/17 = null
+material/18 = null
+material/19 = null
+material/20 = null
+material/21 = null
+material/22 = null
+material/23 = null
+material/24 = null
+material/25 = null
+material/26 = null
+material/27 = null
+material/28 = null
+material/29 = null
+
+[node name="r0" type="VehicleWheel" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.45387, 0.593817, 2.94459 )
+steering = -180.0
+use_as_traction = true
+use_as_steering = true
+wheel_radius = 0.6
+
+[node name="wheel" type="MeshInstance" parent="r0"]
+transform = Transform( 0.349128, 0, 0, 0, 0.349128, 0, 0, 0, 0.349128, -0.000271082, 0.0432242, -0.00370789 )
+mesh = ExtResource( 2 )
+material/0 = SubResource( 4 )
+
+[node name="r1" type="VehicleWheel" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.463, 0.65, -1.907 )
+wheel_radius = 0.6
+
+[node name="wheel" type="MeshInstance" parent="r1"]
+transform = Transform( 0.349128, 0, 0, 0, 0.349128, 0, 0, 0, 0.349128, -0.000318408, 0.0432242, 0.00838733 )
+mesh = ExtResource( 2 )
+material/0 = SubResource( 4 )
+
+[node name="l1" type="VehicleWheel" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.346, 0.65, -1.935 )
+wheel_radius = 0.6
+
+[node name="wheel" type="MeshInstance" parent="l1"]
+transform = Transform( 0.349128, 0, 0, 0, 0.349128, 0, 0, 0, 0.349128, 0.0066812, 0.0432242, 0.00845718 )
+mesh = ExtResource( 2 )
+material/0 = SubResource( 4 )
+
+[node name="l0" type="VehicleWheel" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.383, 0.65, 2.928 )
+use_as_traction = true
+use_as_steering = true
+wheel_radius = 0.6
+
+[node name="wheel" type="MeshInstance" parent="l0"]
+transform = Transform( 0.349128, 0, 0, 0, 0.349128, 0, 0, 0, 0.349128, 0.00677335, 0.0432242, -0.00366068 )
+mesh = ExtResource( 2 )
+material/0 = SubResource( 4 )

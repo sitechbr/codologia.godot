@@ -1,0 +1,40 @@
+[gd_scene load_steps=5 format=2]
+
+[sub_resource type="GDScript" id=1]
+script/source = "extends KinematicBody
+
+const SPEED = 10
+var vel =Vector3()
+
+func _ready():
+	vel = global_transform.basis.z.normalized() * -1
+func _physics_process(delta):
+	var object = move_and_collide(vel,false)
+	if object: 
+		if object.collider.has_method(\"on_bullet\"):
+			object.collider.on_bullet()
+		queue_free()
+		
+	
+
+
+"
+
+[sub_resource type="SphereMesh" id=2]
+
+[sub_resource type="SpatialMaterial" id=3]
+albedo_color = Color( 0.384314, 1, 0, 1 )
+
+[sub_resource type="SphereShape" id=4]
+radius = 0.11936
+
+[node name="Bullet" type="KinematicBody"]
+script = SubResource( 1 )
+
+[node name="MeshInstance" type="MeshInstance" parent="."]
+transform = Transform( 0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0, 0 )
+mesh = SubResource( 2 )
+material/0 = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="."]
+shape = SubResource( 4 )

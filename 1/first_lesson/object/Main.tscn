@@ -1,0 +1,32 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://object/Basket.tscn" type="PackedScene" id=1]
+[ext_resource path="res://object/Egg.tscn" type="PackedScene" id=2]
+[ext_resource path="res://object/spawner.tscn" type="PackedScene" id=3]
+[ext_resource path="res://resources/background.png" type="Texture" id=4]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 241.907, 18.3364 )
+
+[node name="Main" type="Node2D"]
+
+[node name="Background" type="Sprite" parent="."]
+position = Vector2( 362, 385 )
+scale = Vector2( 1.26563, 1.18398 )
+texture = ExtResource( 4 )
+
+[node name="bg" type="StaticBody2D" parent="Background"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Background/bg"]
+position = Vector2( -40.4259, 314.795 )
+shape = SubResource( 1 )
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2( 306, 394 )
+
+[node name="Basket" parent="." instance=ExtResource( 1 )]
+position = Vector2( 275, 654 )
+scale = Vector2( 0.5, 0.5 )
+
+[node name="spawner" parent="." instance=ExtResource( 3 )]
+egg = ExtResource( 2 )

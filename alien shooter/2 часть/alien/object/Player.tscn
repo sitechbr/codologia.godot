@@ -1,0 +1,117 @@
+[gd_scene load_steps=12 format=2]
+
+[ext_resource path="res://image/pkill1.png" type="Texture" id=1]
+[ext_resource path="res://image/pkill2.png" type="Texture" id=2]
+[ext_resource path="res://image/pkill3.png" type="Texture" id=3]
+[ext_resource path="res://image/pkill4.png" type="Texture" id=4]
+[ext_resource path="res://image/run1.png" type="Texture" id=5]
+[ext_resource path="res://image/run2.png" type="Texture" id=6]
+[ext_resource path="res://image/run3.png" type="Texture" id=7]
+[ext_resource path="res://image/shot.png" type="Texture" id=8]
+
+[sub_resource type="GDScript" id=1]
+script/source = "extends KinematicBody2D
+
+var SPEED =20
+var vel = Vector2()
+var is_dead=false
+var sprint = 0
+
+func _physics_process(delta):
+	
+	if is_dead==true:
+		return
+	if Input.is_action_pressed(\"ui_accept\") && G.ammo>0:
+		$AnimatedSprite.play(\"shoot\")	
+	elif Input.is_action_pressed(\"ui_left\"):
+		vel.x-=SPEED+sprint
+		$AnimatedSprite.play(\"run\")
+	elif Input.is_action_pressed(\"ui_right\"):
+		vel.x+=SPEED+sprint
+		$AnimatedSprite.play(\"run\")
+	elif Input.is_action_pressed(\"ui_up\"):
+		vel.y-=SPEED+sprint
+		$AnimatedSprite.play(\"run\")
+	elif Input.is_action_pressed(\"ui_down\"):
+		vel.y+=SPEED+sprint
+		$AnimatedSprite.play(\"run\")
+	
+	else:
+		$AnimatedSprite.play(\"idle\")
+	
+	if Input.is_action_just_pressed(\"ui_sprint\"):
+		sprint = 100
+	if Input.is_action_just_released(\"ui_sprint\"):
+		sprint = 0
+		
+	look_at(get_global_mouse_position())	
+	vel=move_and_slide(vel,Vector2.UP)
+	vel.x = lerp (vel.x,0,0.2)
+	vel.y = lerp (vel.y,0,0.2)
+	
+	G.player_position = global_position
+	
+
+	
+func kill():
+	is_dead =true
+	$AnimatedSprite.play(\"kill\")
+
+
+func _on_AnimatedSprite_animation_finished():
+	if $AnimatedSprite.animation == \"shoot\":
+		G.ammo -=1
+		if $RayCast2D.is_colliding():
+			var o =$RayCast2D.get_collider();
+			if (o.has_method(\"kill\")):
+				o.kill()
+"
+
+[sub_resource type="SpriteFrames" id=2]
+animations = [ {
+"frames": [ ExtResource( 6 ) ],
+"loop": true,
+"name": "idle",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 1 ), ExtResource( 2 ), ExtResource( 3 ), ExtResource( 4 ) ],
+"loop": false,
+"name": "kill",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 6 ), ExtResource( 8 ) ],
+"loop": true,
+"name": "shoot",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 5 ), ExtResource( 6 ), ExtResource( 7 ) ],
+"loop": true,
+"name": "run",
+"speed": 5.0
+} ]
+
+[sub_resource type="RectangleShape2D" id=3]
+extents = Vector2( 24.7898, 25.005 )
+
+[node name="Player" type="KinematicBody2D"]
+script = SubResource( 1 )
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+frames = SubResource( 2 )
+animation = "idle"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( -1.12245, 3.3674 )
+shape = SubResource( 3 )
+
+[node name="Camera2D" type="Camera2D" parent="."]
+current = true
+limit_left = 0
+limit_top = 0
+
+[node name="RayCast2D" type="RayCast2D" parent="."]
+enabled = true
+cast_to = Vector2( 200, 0 )
+collide_with_areas = true
+
+[connection signal="animation_finished" from="AnimatedSprite" to="." method="_on_AnimatedSprite_animation_finished"]

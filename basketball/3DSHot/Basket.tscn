@@ -1,0 +1,27 @@
+[gd_scene load_steps=3 format=2]
+
+[sub_resource type="CubeMesh" id=1]
+
+[sub_resource type="BoxShape" id=2]
+
+[node name="Basket" type="StaticBody"]
+
+[node name="MeshInstance" type="MeshInstance" parent="."]
+transform = Transform( 1.01124, 0, 0, 0, 1.01124, 0, 0, 0, 0.264391, 0, 0.250994, 0 )
+mesh = SubResource( 1 )
+material/0 = null
+
+[node name="CSGTorus" type="CSGTorus" parent="."]
+transform = Transform( 0.433751, 0, 0, 0, 1, 0, 0, 0, 0.410081, 0, 0, 1.56184 )
+inner_radius = 3.0
+outer_radius = 4.0
+
+[node name="CollisionShape" type="CollisionShape" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 0.150655, 0.114062, 0.420644, 0.0161808 )
+shape = SubResource( 2 )
+
+[node name="MeshInstance2" type="MeshInstance" parent="."]
+transform = Transform( 0.179861, 0, 0, 0, 3.60808, 0, 0, 0, 0.064776, 0.0260358, -3.60488, -0.012641 )
+mesh = SubResource( 1 )
+skeleton = NodePath("../MeshInstance")
+material/0 = null

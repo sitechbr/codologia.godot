@@ -1,0 +1,92 @@
+[gd_scene load_steps=5 format=2]
+
+[sub_resource type="GDScript" id=1]
+script/source = "extends KinematicBody
+
+const GRAVITY =2
+const SPEED = 4
+const JUMP = 50
+const ROTATE = 0.001
+var vel = Vector3()
+
+func _ready():
+	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+
+func _physics_process(delta):
+	vel.x=0
+	vel.z=0
+	if Input.is_action_just_pressed(\"ui_cancel\"):
+		get_tree().quit()
+	if Input.is_action_pressed(\"ui_left\"):
+		vel.x-=SPEED
+	if Input.is_action_pressed(\"ui_right\"):
+		vel.x+=SPEED
+	if Input.is_action_pressed(\"ui_down\"):
+		vel.z+=SPEED
+	if Input.is_action_pressed(\"ui_up\"):
+		vel.z-= SPEED
+	if Input.is_action_just_pressed(\"ui_select\") and is_on_floor():
+		vel.y+= JUMP
+	if vel.x || vel.z:
+		vel=vel.rotated(Vector3.UP,rotation.y)
+	vel.y -= GRAVITY
+	vel = move_and_slide(vel,Vector3.UP,false,4,0.785398,false)
+	
+func _input(event):
+	if event is InputEventMouseMotion:
+		rotation.y-=event.relative.x*ROTATE
+		$Head.rotation.x = clamp($Head.rotation.x-event.relative.y*ROTATE,-1.4,1.4)
+		
+	elif event is InputEventMouseButton:
+		if event.is_pressed():
+			$Head/Camera/Gun.fire()		
+			
+		
+		
+		
+		
+"
+
+[sub_resource type="CapsuleShape" id=2]
+
+[sub_resource type="GDScript" id=3]
+script/source = "extends Spatial
+
+
+const BULLET = preload(\"res://Bullet.tscn\")
+
+
+func fire():
+	var bullet = BULLET.instance()
+	bullet.global_transform = $Position3D.global_transform
+	
+	
+	Global.add(bullet)
+ 
+"
+
+[sub_resource type="CubeMesh" id=4]
+
+[node name="Player" type="KinematicBody"]
+script = SubResource( 1 )
+
+[node name="CollisionShape" type="CollisionShape" parent="."]
+transform = Transform( 1, 0, 0, 0, -1.62921e-07, -1, 0, 1, -1.62921e-07, 0, 0, 0 )
+shape = SubResource( 2 )
+
+[node name="Head" type="Spatial" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.38765, 0 )
+
+[node name="Camera" type="Camera" parent="Head"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.594226 )
+
+[node name="Gun" type="Spatial" parent="Head/Camera"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.504962, -0.899036, -1.41421 )
+script = SubResource( 3 )
+
+[node name="CSGMesh" type="CSGMesh" parent="Head/Camera/Gun"]
+transform = Transform( 0.0999246, -0.00128816, -0.0183172, 0.00126019, 0.099989, -0.00392799, 0.00367315, 0.000738842, 0.499649, 0, 0, 0 )
+mesh = SubResource( 4 )
+
+[node name="Position3D" type="Position3D" parent="Head/Camera/Gun"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00878957, -0.00403929, -0.617226 )

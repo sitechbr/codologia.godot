@@ -1,0 +1,41 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Player.tscn" type="PackedScene" id=1]
+[ext_resource path="res://platform.tscn" type="PackedScene" id=2]
+[ext_resource path="res://out.tscn" type="PackedScene" id=3]
+
+[node name="Main" type="Node2D"]
+
+[node name="Player" parent="." instance=ExtResource( 1 )]
+position = Vector2( 69.9858, 54.401 )
+scale = Vector2( 1, 1 )
+
+[node name="platform" parent="." instance=ExtResource( 2 )]
+position = Vector2( 74.2333, 433.018 )
+
+[node name="platform2" parent="." instance=ExtResource( 2 )]
+position = Vector2( 229.797, 466.959 )
+
+[node name="platform3" parent="." instance=ExtResource( 2 )]
+position = Vector2( 416, 424 )
+
+[node name="platform7" parent="." instance=ExtResource( 2 )]
+position = Vector2( 504, 272 )
+
+[node name="platform8" parent="." instance=ExtResource( 2 )]
+position = Vector2( 608, 272 )
+
+[node name="platform9" parent="." instance=ExtResource( 2 )]
+position = Vector2( 712, 272 )
+
+[node name="StaticBody2D" parent="platform9" instance=ExtResource( 3 )]
+position = Vector2( -656, 328 )
+
+[node name="platform4" parent="." instance=ExtResource( 2 )]
+position = Vector2( 512, 424 )
+
+[node name="platform5" parent="." instance=ExtResource( 2 )]
+position = Vector2( 616, 424 )
+
+[node name="platform6" parent="." instance=ExtResource( 2 )]
+position = Vector2( 720, 424 )

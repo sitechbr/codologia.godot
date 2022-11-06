@@ -1,0 +1,79 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://enem/Cube.mesh" type="ArrayMesh" id=1]
+[ext_resource path="res://enem/RUN.anim" type="Animation" id=2]
+[ext_resource path="res://maincraft2.gd" type="Script" id=3]
+
+[sub_resource type="CapsuleShape" id=2]
+
+[sub_resource type="Skin" id=1]
+resource_name = "Skin"
+bind_count = 5
+bind/0/name = "bone"
+bind/0/bone = -1
+bind/0/pose = Transform( 0.436381, 0, 0, 0, 0.436381, 0, 0, 0, 0.436381, 0.0145425, 0.0952564, -0.0117404 )
+bind/1/name = "bone_1"
+bind/1/bone = -1
+bind/1/pose = Transform( 1.90748e-08, 0, -0.436381, 0, -0.436381, 0, -0.436381, 0, -1.90748e-08, 0.0807257, -0.487481, 0.361539 )
+bind/2/name = "bone_2"
+bind/2/bone = -1
+bind/2/pose = Transform( 1.90748e-08, 0, -0.436381, 0, -0.436381, 0, -0.436381, 0, -1.90748e-08, 0.0807258, -0.472941, -0.380026 )
+bind/3/name = "bone_3"
+bind/3/bone = -1
+bind/3/pose = Transform( -4.7543e-08, -1.27328e-07, -0.436381, -0.43638, -0.00106947, 7.5514e-08, -0.00106947, 0.43638, -1.27212e-07, 0.0807256, -0.938722, -0.949603 )
+bind/4/name = "bone_4"
+bind/4/bone = -1
+bind/4/pose = Transform( -2.10376e-07, 2.67523e-05, -0.436381, 0.436361, 0.0042137, 1.24167e-07, 0.0042137, -0.436361, -2.6753e-05, 0.0806673, -0.917224, 0.946446 )
+
+[node name="maincraft2" type="KinematicBody"]
+script = ExtResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="."]
+transform = Transform( 1.53741, 1.46039, 0.72624, 0, 1.36158, -2.738, -1.01352, 0.855428, 0.425396, 0, 0, 0 )
+shape = SubResource( 2 )
+
+[node name="Light" type="Spatial" parent="."]
+transform = Transform( -0.290865, 0.566393, 0.771101, -0.0551891, 0.794672, -0.604525, -0.955171, -0.218391, -0.199883, 4.07625, 5.90386, -1.00545 )
+
+[node name="Camera" type="Spatial" parent="."]
+transform = Transform( 0.685921, 0.651558, 0.324014, 0, 0.445271, -0.895396, -0.727676, 0.61417, 0.305421, 7.35889, 4.95831, 6.92579 )
+
+[node name="Spatial" type="Spatial" parent="."]
+transform = Transform( 2.29157, 0, 0, 0, 2.29157, 0, 0, 0, 2.29157, -0.0333252, -0.218287, 0.026904 )
+
+[node name="Skeleton" type="Skeleton" parent="Spatial"]
+bones/0/name = "bone"
+bones/0/parent = -1
+bones/0/rest = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
+bones/0/enabled = true
+bones/0/bound_children = [  ]
+bones/1/name = "bone_1"
+bones/1/parent = 0
+bones/1/rest = Transform( 0, 0, -1, 0, -1, 0, -1, 0, 0, 0.376081, -0.392225, 0.0689854 )
+bones/1/enabled = true
+bones/1/bound_children = [  ]
+bones/2/name = "bone_2"
+bones/2/parent = 0
+bones/2/rest = Transform( 0, 0, -1, 0, -1, 0, -1, 0, 0, -0.365483, -0.377684, 0.0689854 )
+bones/2/enabled = true
+bones/2/bound_children = [  ]
+bones/3/name = "bone_3"
+bones/3/parent = 0
+bones/3/rest = Transform( -0.214228, -0.273796, -0.937626, 0.100942, -0.960978, 0.257552, -0.971554, -0.0394709, 0.233506, -0.680349, 1.04256, 0.068985 )
+bones/3/enabled = true
+bones/3/bound_children = [  ]
+bones/4/name = "bone_4"
+bones/4/parent = 0
+bones/4/rest = Transform( -0.0548693, 0.182599, -0.981655, -0.246795, -0.955112, -0.163868, -0.967513, 0.233277, 0.0974711, 0.922584, 1.05051, 0.068985 )
+bones/4/enabled = true
+bones/4/bound_children = [  ]
+
+[node name="Cube" type="MeshInstance" parent="Spatial/Skeleton"]
+mesh = ExtResource( 1 )
+skin = SubResource( 1 )
+material/0 = null
+material/1 = null
+material/2 = null
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/RUN = ExtResource( 2 )

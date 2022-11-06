@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://graphics/grass 8.png" type="Texture" id=1]
+[ext_resource path="res://Player.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Zombie.gd" type="Script" id=3]
+
+[node name="Game" type="Node2D"]
+
+[node name="grass" type="Sprite" parent="."]
+position = Vector2( -18.4317, -15.8231 )
+scale = Vector2( 0.21415, 0.185874 )
+texture = ExtResource( 1 )
+centered = false
+region_enabled = true
+region_rect = Rect2( 0, 0, 5000, 5000 )
+
+[node name="Player" parent="." instance=ExtResource( 2 )]
+position = Vector2( 315.182, 282.282 )
+scale = Vector2( 1.07075, 0.92937 )
+
+[node name="Zombies_gen" type="Node2D" parent="."]
+script = ExtResource( 3 )

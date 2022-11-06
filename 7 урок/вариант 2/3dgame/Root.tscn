@@ -1,0 +1,61 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://Player.tscn" type="PackedScene" id=1]
+[ext_resource path="res://texture/texture_grass_9.jpg" type="Texture" id=2]
+[ext_resource path="res://Box.tscn" type="PackedScene" id=3]
+[ext_resource path="res://VEDRO.tscn" type="PackedScene" id=4]
+
+[sub_resource type="PlaneMesh" id=1]
+
+[sub_resource type="SpatialMaterial" id=2]
+albedo_color = Color( 0.239216, 0.607843, 0.160784, 1 )
+albedo_texture = ExtResource( 2 )
+
+[sub_resource type="ConcavePolygonShape" id=3]
+data = PoolVector3Array( 1, 0, 1, -1, 0, 1, 1, 0, -1, -1, 0, 1, -1, 0, -1, 1, 0, -1 )
+
+[node name="Root" type="Node"]
+
+[node name="MeshInstance" type="MeshInstance" parent="."]
+transform = Transform( 30, 0, 0, 0, 1, 0, 0, 0, 30, 5.88979, 0.327342, -1.09678 )
+mesh = SubResource( 1 )
+material/0 = SubResource( 2 )
+
+[node name="StaticBody" type="StaticBody" parent="MeshInstance"]
+
+[node name="CollisionShape" type="CollisionShape" parent="MeshInstance/StaticBody"]
+shape = SubResource( 3 )
+
+[node name="CollisionShape2" type="CollisionShape" parent="MeshInstance/StaticBody"]
+transform = Transform( 1, 0, 0, 0, -0.0174349, -29.9954, 0, 0.0333283, -0.0174349, 0, 4.84318, 1.00239 )
+shape = SubResource( 3 )
+
+[node name="CollisionShape3" type="CollisionShape" parent="MeshInstance/StaticBody"]
+transform = Transform( 1, 0, 0, 0, -0.0174349, -29.9954, 0, 0.0333283, -0.0174349, 0, 4.84318, -0.978947 )
+shape = SubResource( 3 )
+
+[node name="CollisionShape4" type="CollisionShape" parent="MeshInstance/StaticBody"]
+transform = Transform( -0.00308923, 0.0333281, -0.0174349, 0, -0.0174349, -29.9954, -0.999996, -0.000102959, 5.38606e-05, 0.969894, 4.81501, -0.00806548 )
+shape = SubResource( 3 )
+
+[node name="CollisionShape5" type="CollisionShape" parent="MeshInstance/StaticBody"]
+transform = Transform( -0.00308923, 0.0333281, -0.0174349, 0, -0.0174349, -29.9954, -0.999996, -0.000102959, 5.38606e-05, -0.975657, 4.81501, -0.00806549 )
+shape = SubResource( 3 )
+
+[node name="Player" parent="." instance=ExtResource( 1 )]
+transform = Transform( -0.402326, 0.312312, 0.860579, 0.00204298, 0.940317, -0.340294, -0.915494, -0.135151, -0.378952, 0, 4.01959, 0 )
+
+[node name="Box" parent="." instance=ExtResource( 3 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 8.76033, 18.955 )
+
+[node name="Box2" parent="." instance=ExtResource( 3 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6.22425, 18.955 )
+
+[node name="Box3" parent="." instance=ExtResource( 3 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.54011, 18.955 )
+
+[node name="Box4" parent="." instance=ExtResource( 3 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 11.7531, 18.955 )
+
+[node name="RigidBody" parent="." instance=ExtResource( 4 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 11.7902, 2.60915, -0.476714 )

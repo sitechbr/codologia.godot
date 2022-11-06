@@ -1,0 +1,82 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://ttf/Augusta One.ttf" type="DynamicFontData" id=1]
+
+[sub_resource type="GDScript" id=3]
+script/source = "extends CanvasLayer
+onready var car = get_node (\"../Car\")
+
+
+
+func _on_Save_pressed():
+	Fs.save_data(\"save.dat\", car.transform)
+
+
+func _on_Load_pressed():
+	car.transform = Fs.load_data(\"save.dat\")
+"
+
+[sub_resource type="DynamicFont" id=1]
+size = 147
+outline_color = Color( 0.886275, 0.0862745, 0.0862745, 1 )
+font_data = ExtResource( 1 )
+
+[sub_resource type="DynamicFont" id=2]
+size = 40
+font_data = ExtResource( 1 )
+
+[node name="Message" type="CanvasLayer"]
+script = SubResource( 3 )
+
+[node name="lose" type="Label" parent="."]
+visible = false
+margin_left = 238.265
+margin_top = 218.141
+margin_right = 800.265
+margin_bottom = 355.141
+custom_fonts/font = SubResource( 1 )
+custom_colors/font_color = Color( 0.980392, 0.0784314, 0.0352941, 1 )
+text = "Game Over"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="win" type="Label" parent="."]
+visible = false
+margin_left = 374.435
+margin_top = 227.665
+margin_right = 936.435
+margin_bottom = 500.665
+custom_fonts/font = SubResource( 1 )
+custom_colors/font_color = Color( 0.980392, 0.0784314, 0.0352941, 1 )
+text = "Win
+"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Save" type="Button" parent="."]
+anchor_top = 1.0
+anchor_bottom = 1.0
+margin_top = -43.0
+margin_right = 80.0
+custom_fonts/font = SubResource( 2 )
+text = "Save"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Load" type="Button" parent="."]
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -80.0
+margin_top = -43.0
+custom_fonts/font = SubResource( 2 )
+text = "Load"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+[connection signal="pressed" from="Save" to="." method="_on_Save_pressed"]
+[connection signal="pressed" from="Load" to="." method="_on_Load_pressed"]

@@ -1,0 +1,56 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://image/grass 8.png" type="Texture" id=1]
+[ext_resource path="res://object/Player.tscn" type="PackedScene" id=2]
+[ext_resource path="res://object/GUI.tscn" type="PackedScene" id=3]
+[ext_resource path="res://House.tscn" type="PackedScene" id=4]
+
+[sub_resource type="GDScript" id=1]
+script/source = "extends Node2D
+
+func _ready():
+	randomize()
+	var Z = preload(\"res://object/zombi.tscn\")
+	var A = preload(\"res://object/Ammo.tscn\")
+	var max_zombies =100
+	var max_ammo =20
+	var max_width=$\"../grass 8\".region_rect.size.x
+	var max_height=$\"../grass 8\".region_rect.size.y
+	
+	
+	for i in range(max_zombies):
+		var z = Z.instance()
+		z.position.x = rand_range(100,max_width)
+		z.position.y = rand_range(100,max_height)
+		add_child(z)
+
+
+	for i in range(max_ammo):
+		var a = A.instance()
+		a.position.x = rand_range(100,max_width)
+		a.position.y = rand_range(100,max_height)
+		add_child(a)
+"
+
+[node name="root" type="Node2D"]
+
+[node name="grass 8" type="Sprite" parent="."]
+position = Vector2( -1.62744, 13.8019 )
+scale = Vector2( 3.16176, 3.0237 )
+texture = ExtResource( 1 )
+centered = false
+region_enabled = true
+region_rect = Rect2( 16.081, -20.254, 5000, 5000 )
+
+[node name="Player" parent="." instance=ExtResource( 2 )]
+position = Vector2( 59.552, 56.958 )
+z_index = 1
+
+[node name="generation" type="Node2D" parent="."]
+script = SubResource( 1 )
+
+[node name="GUI" parent="." instance=ExtResource( 3 )]
+
+[node name="House" parent="." instance=ExtResource( 4 )]
+position = Vector2( 2123.92, 978.337 )
+scale = Vector2( 3.16176, 3.0237 )

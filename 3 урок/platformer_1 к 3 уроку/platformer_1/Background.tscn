@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://sprites/firewatch-campo-santo-kholmy-vid-les-igra-peizazh-gory-poz-6.jpg" type="Texture" id=1]
+
+[node name="Background" type="ParallaxBackground"]
+
+[node name="firewatch-campo-santo-kholmy-vid-les-igra-peizazh-gory-poz-6" type="Sprite" parent="."]
+position = Vector2( 464.773, 224.369 )
+texture = ExtResource( 1 )

@@ -1,0 +1,73 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://image/horror-cemetery-mythology-midnight-darkness-screenshot-computer-wallpaper-pc-game-193239.jpg" type="Texture" id=1]
+
+[sub_resource type="GDScript" id=3]
+script/source = "extends Node2D
+
+
+func _ready():
+	$GUI/NewGame.connect(\"pressed\",self,\"btn_newGame\")
+	$GUI/Exit.connect(\"pressed\",self,\"btn_exit\")
+
+
+func btn_newGame():
+	G.points=0
+	G.ammo =20
+	get_tree().change_scene(\"res://root.tscn\")
+	
+func btn_exit():
+	get_tree().quit()
+"
+
+[sub_resource type="DynamicFontData" id=1]
+font_path = "res://20832.ttf"
+
+[sub_resource type="DynamicFont" id=2]
+size = 50
+font_data = SubResource( 1 )
+
+[node name="Menu" type="Node2D"]
+script = SubResource( 3 )
+
+[node name="horror-cemetery-mythology-midnight-darkness-screenshot-computer-wallpaper-pc-game-193239" type="Sprite" parent="."]
+position = Vector2( 522.092, 305.213 )
+scale = Vector2( 0.541428, 0.509352 )
+texture = ExtResource( 1 )
+
+[node name="GUI" type="CanvasLayer" parent="."]
+
+[node name="NewGame" type="LinkButton" parent="GUI"]
+margin_left = 15.7145
+margin_top = 354.698
+margin_right = 215.714
+margin_bottom = 411.698
+custom_fonts/font = SubResource( 2 )
+text = "New Game"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Continue" type="LinkButton" parent="GUI"]
+margin_left = 20.2043
+margin_top = 410.821
+margin_right = 220.204
+margin_bottom = 467.821
+focus_mode = 2
+custom_fonts/font = SubResource( 2 )
+text = "Continue"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Exit" type="LinkButton" parent="GUI"]
+margin_left = 15.7145
+margin_top = 466.944
+margin_right = 215.714
+margin_bottom = 523.944
+focus_mode = 2
+custom_fonts/font = SubResource( 2 )
+text = "Exit"
+__meta__ = {
+"_edit_use_anchors_": false
+}

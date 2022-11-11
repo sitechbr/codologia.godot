@@ -10,8 +10,9 @@ radius = 38.0526
 script = ExtResource( 2 )
 
 [node name="Basket" type="Sprite" parent="."]
-position = Vector2( 21, -4 )
+position = Vector2( -1, -2 )
 texture = ExtResource( 1 )
+offset = Vector2( 22, -2 )
 
 [node name="Area2D" type="Area2D" parent="."]
 
@@ -19,7 +20,7 @@ texture = ExtResource( 1 )
 position = Vector2( 22, 108 )
 shape = SubResource( 1 )
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+[node name="Collision" type="CollisionPolygon2D" parent="."]
 polygon = PoolVector2Array( 249, 160, 340, -83, 283, -84, 201, 115, -173, 118, -237, -96, -302, -91, -229, 155 )
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_body_entered"]

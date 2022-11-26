@@ -1,0 +1,26 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://resources/ttf/Augusta One.ttf" type="DynamicFontData" id=1]
+[ext_resource path="res://script/Control.gd" type="Script" id=2]
+
+[sub_resource type="DynamicFont" id=1]
+size = 30
+outline_color = Color( 0.0470588, 0.0470588, 0.0470588, 1 )
+font_data = ExtResource( 1 )
+
+[sub_resource type="Theme" id=2]
+default_font = SubResource( 1 )
+
+[node name="Control" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 2 )
+
+[node name="Score" type="Label" parent="."]
+margin_left = 917.0
+margin_top = 12.0
+margin_right = 1000.0
+margin_bottom = 64.0
+theme = SubResource( 2 )
+text = "00
+"

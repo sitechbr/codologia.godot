@@ -149,7 +149,6 @@ shape = SubResource( 13 )
 [node name="MeshInstance9" type="MeshInstance" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 5.01981, 3.26425, 22.379 )
 mesh = SubResource( 14 )
-material/0 = null
 
 [node name="StaticBody" type="StaticBody" parent="MeshInstance9"]
 

@@ -1,0 +1,76 @@
+extends KinematicBody
+
+
+const GRAVITY =10
+const SPEED = 200
+const JUMP = 10
+const ROTATE = 0.01
+var vel = Vector3()
+
+var rot_x=0
+var rot_y =0 
+
+const BULLET = preload("res://bullet.tscn")
+
+
+func _ready():
+	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+
+func _physics_process(delta):
+	var dir = Vector3()
+	
+	if Input.is_action_just_pressed("ui_cancel"):
+		get_tree().quit()
+	
+	if Input.is_action_pressed("ui_left"):
+		dir.x=-1
+	if Input.is_action_pressed("ui_right"):
+		dir.x=1
+	if Input.is_action_pressed("ui_down"):
+		dir.z=1
+	if Input.is_action_pressed("ui_up"):
+		dir.z= -1	
+	
+	if dir:
+		dir*=SPEED*delta
+		dir=dir.rotated(Vector3(0,1,0),rotation.y)	
+	
+	vel.x = dir.x
+	vel.z=dir.z
+	
+	if Input.is_action_just_pressed("ui_select"):
+		if is_on_floor():
+			vel.y= JUMP
+	
+	vel.y -= GRAVITY*delta
+				
+	vel = move_and_slide(vel,Vector3(0,1,0))
+	
+func _input(event):
+	if event is InputEventMouseMotion:
+		rot_x -= event.relative.y*ROTATE
+		rot_y -= event.relative.x*ROTATE
+		
+		if rot_x <-1 : rot_x=-1
+		if rot_x > 1: rot_x=1
+		
+		transform.basis = Basis(Vector3(0,1,0),rot_y)
+		$Head/Camera.transform.basis = Basis(Vector3(1,0,0),rot_x)	
+		
+	elif event is InputEventMouseButton:
+		if event.is_pressed():
+			fire()		
+			
+		
+
+
+
+
+func fire():
+	var bullet = BULLET.instance()
+	bullet.global_transform = $Head/Camera/Gun/b_start.global_transform
+	Global.add(bullet)
+ 
+		
+		
+		

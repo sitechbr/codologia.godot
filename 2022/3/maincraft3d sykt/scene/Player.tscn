@@ -1,0 +1,31 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://script/Player.gd" type="Script" id=1]
+
+[sub_resource type="CapsuleShape" id=1]
+
+[sub_resource type="CubeMesh" id=2]
+
+[sub_resource type="SpatialMaterial" id=3]
+albedo_color = Color( 0.0784314, 0.0627451, 0.0627451, 1 )
+
+[node name="Player" type="KinematicBody"]
+script = ExtResource( 1 )
+
+[node name="CollisionShape" type="CollisionShape" parent="."]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0 )
+shape = SubResource( 1 )
+
+[node name="Camera" type="Camera" parent="."]
+transform = Transform( 1, 0, 0, 0, 0.989659, 0.143441, 0, -0.143441, 0.989659, 0, 0.577105, 0 )
+
+[node name="MeshInstance" type="MeshInstance" parent="Camera"]
+transform = Transform( 0.2, 0, 0, 0, 0.2, 0, 0, 0, 1, 0.47063, -0.802353, -1.35271 )
+mesh = SubResource( 2 )
+material/0 = SubResource( 3 )
+__meta__ = {
+"_editor_description_": "		"
+}
+
+[node name="Position3D" type="Position3D" parent="Camera"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.17159, -1.28234, -3.33953 )

@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://png-transparent-reticle-shooting-target-telescopic-sight-crosshair-miscellaneous-angle-photography-thumbnail.png" type="Texture" id=1]
+
+[node name="Control" type="Control"]
+margin_top = 2.0
+margin_right = 1023.0
+margin_bottom = 604.0
+
+[node name="Png-transparent-reticle-shooting-target-telescopic-sight-crosshair-miscellaneous-angle-photography-thumbnail" type="Sprite" parent="."]
+position = Vector2( 651, 408 )
+scale = Vector2( 0.2, 0.2 )
+texture = ExtResource( 1 )

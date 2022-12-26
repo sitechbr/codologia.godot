@@ -1,0 +1,45 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://depositphotos_22583315-stock-photo-green-grass-seamless-texture.webp" type="Texture" id=2]
+
+[sub_resource type="PlaneMesh" id=1]
+
+[sub_resource type="SpatialMaterial" id=3]
+albedo_color = Color( 0.215686, 0.929412, 0, 1 )
+albedo_texture = ExtResource( 2 )
+metallic = 0.62
+metallic_specular = 0.63
+
+[sub_resource type="BoxShape" id=2]
+
+[sub_resource type="BoxShape" id=4]
+
+[node name="gnd" type="StaticBody"]
+
+[node name="MeshInstance" type="MeshInstance" parent="."]
+transform = Transform( 50, 0, 0, 0, 50, 0, 0, 0, 50, 0, 0, 0 )
+mesh = SubResource( 1 )
+material/0 = SubResource( 3 )
+__meta__ = {
+"_editor_description_": "	"
+}
+
+[node name="CollisionShape" type="CollisionShape" parent="."]
+transform = Transform( 50, 0, 0, 0, 1, 0, 0, 0, 50, 0, 0, 0 )
+shape = SubResource( 2 )
+
+[node name="CollisionShape2" type="CollisionShape" parent="."]
+transform = Transform( 100, 0, 0, 0, 100, 0, 0, 0, 5, 0, 0, 50 )
+shape = SubResource( 4 )
+
+[node name="CollisionShape3" type="CollisionShape" parent="."]
+transform = Transform( 100, 0, 0, 0, 100, 0, 0, 0, 5, 0, 0, -50 )
+shape = SubResource( 4 )
+
+[node name="CollisionShape4" type="CollisionShape" parent="."]
+transform = Transform( -4.37114e-06, 0, 5, 0, 100, 0, -100, 0, -2.18557e-07, 50, 0, 0 )
+shape = SubResource( 4 )
+
+[node name="CollisionShape5" type="CollisionShape" parent="."]
+transform = Transform( -4.37114e-06, 0, 5, 0, 100, 0, -100, 0, -2.18557e-07, -50, 0, 0 )
+shape = SubResource( 4 )

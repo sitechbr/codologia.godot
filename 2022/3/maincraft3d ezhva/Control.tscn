@@ -1,0 +1,33 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://png-transparent-reticle-shooting-target-telescopic-sight-crosshair-miscellaneous-angle-photography-thumbnail.png" type="Texture" id=1]
+[ext_resource path="res://Control.gd" type="Script" id=2]
+[ext_resource path="res://Augusta One.ttf" type="DynamicFontData" id=3]
+
+[sub_resource type="DynamicFont" id=1]
+size = 76
+outline_color = Color( 0.207843, 0.00784314, 0.00784314, 1 )
+extra_spacing_bottom = -1
+font_data = ExtResource( 3 )
+
+[sub_resource type="Theme" id=2]
+default_font = SubResource( 1 )
+
+[node name="Control" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 2 )
+
+[node name="Png-transparent-reticle-shooting-target-telescopic-sight-crosshair-miscellaneous-angle-photography-thumbnail" type="Sprite" parent="."]
+position = Vector2( 557, 292 )
+scale = Vector2( 0.2, 0.2 )
+texture = ExtResource( 1 )
+
+[node name="Label" type="Label" parent="."]
+visible = false
+margin_left = 458.0
+margin_top = 173.0
+margin_right = 702.0
+margin_bottom = 344.0
+theme = SubResource( 2 )
+text = "tt"

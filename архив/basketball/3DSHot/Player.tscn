@@ -98,7 +98,6 @@ cast_to = Vector3( 0, 0, -5 )
 [node name="MeshInstance" type="MeshInstance" parent="Head"]
 transform = Transform( 0.1, 0, 0, 0, 0.1, 0, 0, 0, 1, 0.454641, 0.499431, -0.743244 )
 mesh = SubResource( 2 )
-material/0 = null
 
 [node name="Position3D" type="Position3D" parent="Head"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.451667, 0.520573, -1.7616 )

@@ -1,0 +1,28 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://scene/png-transparent-reticle-shooting-target-telescopic-sight-crosshair-miscellaneous-angle-photography-thumbnail.png" type="Texture" id=1]
+[ext_resource path="res://scene/Augusta One.ttf" type="DynamicFontData" id=2]
+
+[sub_resource type="DynamicFont" id=1]
+font_data = ExtResource( 2 )
+
+[sub_resource type="Theme" id=2]
+default_font = SubResource( 1 )
+
+[node name="Control" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="Png-transparent-reticle-shooting-target-telescopic-sight-crosshair-miscellaneous-angle-photography-thumbnail" type="Sprite" parent="."]
+position = Vector2( 509, 266 )
+scale = Vector2( 0.2, 0.2 )
+texture = ExtResource( 1 )
+
+[node name="Label" type="Label" parent="."]
+visible = false
+margin_left = 321.0
+margin_top = 278.0
+margin_right = 394.0
+margin_bottom = 292.0
+theme = SubResource( 2 )
+text = "Game Over"

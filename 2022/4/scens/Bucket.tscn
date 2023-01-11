@@ -1,0 +1,41 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://resources/seau bois uv peint.obj" type="ArrayMesh" id=1]
+[ext_resource path="res://tree_material.tres" type="Material" id=2]
+[ext_resource path="res://scripts/Interactive.gd" type="Script" id=3]
+
+[sub_resource type="CylinderShape" id=1]
+
+[node name="Bucket" type="RigidBody"]
+script = ExtResource( 3 )
+
+[node name="seau bois uv peint" type="MeshInstance" parent="."]
+transform = Transform( 0.05, 0, 0, 0, 0.05, 0, 0, 0, 0.05, 0, 0, 0 )
+mesh = ExtResource( 1 )
+material/0 = ExtResource( 2 )
+material/1 = ExtResource( 2 )
+material/2 = ExtResource( 2 )
+material/3 = ExtResource( 2 )
+material/4 = ExtResource( 2 )
+material/5 = ExtResource( 2 )
+material/6 = ExtResource( 2 )
+material/7 = ExtResource( 2 )
+material/8 = ExtResource( 2 )
+material/9 = ExtResource( 2 )
+material/10 = ExtResource( 2 )
+material/11 = ExtResource( 2 )
+material/12 = ExtResource( 2 )
+material/13 = ExtResource( 2 )
+material/14 = ExtResource( 2 )
+material/15 = ExtResource( 2 )
+material/16 = ExtResource( 2 )
+material/17 = ExtResource( 2 )
+material/18 = ExtResource( 2 )
+material/19 = ExtResource( 2 )
+material/20 = ExtResource( 2 )
+material/21 = ExtResource( 2 )
+material/22 = ExtResource( 2 )
+
+[node name="CollisionShape" type="CollisionShape" parent="."]
+transform = Transform( 0.42, 0, 0, 0, 0.294, 0, 0, 0, 0.42, 0, 0, 0 )
+shape = SubResource( 1 )

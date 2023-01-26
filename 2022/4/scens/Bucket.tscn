@@ -7,6 +7,7 @@
 [sub_resource type="CylinderShape" id=1]
 
 [node name="Bucket" type="RigidBody"]
+can_sleep = false
 script = ExtResource( 3 )
 
 [node name="seau bois uv peint" type="MeshInstance" parent="."]

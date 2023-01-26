@@ -1,0 +1,22 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://resources/seau bois uv peint.obj" type="ArrayMesh" id=1]
+[ext_resource path="res://new_spatialmaterial.tres" type="Material" id=2]
+[ext_resource path="res://script/Bucket.gd" type="Script" id=3]
+
+[sub_resource type="CylinderShape" id=1]
+
+[node name="Bucket" type="RigidBody"]
+can_sleep = false
+script = ExtResource( 3 )
+
+[node name="seau bois uv peint" type="MeshInstance" parent="."]
+transform = Transform( 0.05, 0, 0, 0, 0.05, 0, 0, 0, 0.05, 0, 0, 0 )
+mesh = ExtResource( 1 )
+material/0 = ExtResource( 2 )
+material/1 = ExtResource( 2 )
+material/2 = ExtResource( 2 )
+
+[node name="CollisionShape" type="CollisionShape" parent="."]
+transform = Transform( 0.42, 0, 0, 0, 0.294, 0, 0, 0, 0.42, 0, 0, 0 )
+shape = SubResource( 1 )

@@ -14,6 +14,7 @@ onready var head =$Head
 
 func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+	G.player = self
 	
 func _physics_process(delta):
 	var dir = Vector3()
@@ -46,4 +47,23 @@ func _input(event):
 		transform.basis = Basis(Vector3.UP,rot_y)
 		$Head.transform.basis = Basis(Vector3(1,0,0),rot_x)
 	
-	
+	if event is InputEventMouseButton:
+		if event.is_pressed():
+			if event.button_index == BUTTON_LEFT:
+				cast = $Head/RayCast.get_collider()
+				#print(cast)
+				if cast is Interactive: 
+					if object: 
+						object.drop()
+					object=cast
+					cast.take($Head/Target)
+				else:
+					if object:
+						object.drop()
+						object=null
+			if event.button_index == BUTTON_RIGHT:
+				if object:
+					object.push()
+					object=null
+				
+					

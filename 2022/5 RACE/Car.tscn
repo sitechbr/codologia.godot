@@ -1,0 +1,96 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://resources/CAR.obj" type="ArrayMesh" id=1]
+[ext_resource path="res://resources/Wheel.obj" type="ArrayMesh" id=2]
+[ext_resource path="res://Scripts/Car.gd" type="Script" id=3]
+[ext_resource path="res://Black.tres" type="Material" id=4]
+
+[sub_resource type="SpatialMaterial" id=3]
+albedo_color = Color( 0.564706, 0.0509804, 0.0509804, 1 )
+
+[sub_resource type="SpatialMaterial" id=4]
+albedo_color = Color( 0.0980392, 0.243137, 0.592157, 1 )
+
+[sub_resource type="ConvexPolygonShape" id=1]
+points = PoolVector3Array( 0.913908, 0.834395, -0.953459, 1.22201, -0.833905, 3.07425, 1.01348, -0.0707267, 2.89989, -1.1868, -1.129, -3.01646, -1.03333, -0.0707267, 2.89989, 1.16705, -1.129, -3.01646, -1.1868, -1.129, 3.02279, -0.931641, 0.833368, -0.9193, 0.882996, 0.871, 0.794046, 1.1888, -1.11817, 2.99028, -1.20715, -0.833905, -3.06793, -0.86837, 0.871, 0.794046, 1.18682, -0.833905, -3.06793, -0.845396, -0.237507, -2.5075, -1.20715, -0.833905, 3.07425, 0.860253, -0.237507, -2.5075, 1.22201, -0.833905, -2.72041, 0.912503, 0.866416, -0.784653, -0.893709, 0.862114, -0.380355, 1.18793, -1.11743, -2.644, 0.944283, 0.697155, -1.01745 )
+
+[sub_resource type="Skin" id=2]
+
+[node name="Car" type="VehicleBody"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.997888, 0 )
+engine_force = -1000.0
+steering = -10.0
+script = ExtResource( 3 )
+
+[node name="CAR" type="MeshInstance" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.122379, 0 )
+mesh = ExtResource( 1 )
+material/0 = SubResource( 3 )
+material/1 = SubResource( 4 )
+
+[node name="CollisionShape2" type="CollisionShape" parent="."]
+transform = Transform( 1, 0, 0, 0, 0.5, 0, 0, 0, 1, 0, -0.151, 0 )
+shape = SubResource( 1 )
+
+[node name="FL" type="VehicleWheel" parent="."]
+transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -1.82852, -0.653615, -1.77115 )
+engine_force = -1000.0
+steering = -10.0
+use_as_traction = true
+use_as_steering = true
+wheel_roll_influence = 0.05
+wheel_radius = 1.0
+damping_compression = 1.0
+damping_relaxation = 1.0
+
+[node name="Wheel2" type="MeshInstance" parent="FL"]
+transform = Transform( 2, 0, 0, 0, 2, 0, 0, 0, 2, -0.171925, -0.0321749, -0.0688177 )
+mesh = ExtResource( 2 )
+skin = SubResource( 2 )
+skeleton = NodePath("../../FR")
+material/0 = ExtResource( 4 )
+
+[node name="DL" type="VehicleWheel" parent="."]
+transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -1.82852, -0.653615, 1.9949 )
+wheel_roll_influence = 0.05
+wheel_radius = 1.0
+damping_compression = 1.0
+damping_relaxation = 1.0
+
+[node name="Wheel3" type="MeshInstance" parent="DL"]
+transform = Transform( 2, 0, 0, 0, 2, 0, 0, 0, 2, -0.194149, -0.0321749, -0.122525 )
+mesh = ExtResource( 2 )
+skin = SubResource( 2 )
+skeleton = NodePath("../../FR")
+material/0 = ExtResource( 4 )
+
+[node name="FR" type="VehicleWheel" parent="."]
+transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 1.73326, -0.653615, -1.77115 )
+engine_force = -1000.0
+steering = -10.0
+use_as_traction = true
+use_as_steering = true
+wheel_roll_influence = 0.05
+wheel_radius = 1.0
+damping_compression = 1.0
+damping_relaxation = 1.0
+
+[node name="Wheel" type="MeshInstance" parent="FR"]
+transform = Transform( 2, 0, 0, 0, 2, 0, 0, 0, 2, 0.168657, -0.0321749, -0.0688177 )
+mesh = ExtResource( 2 )
+skin = SubResource( 2 )
+material/0 = ExtResource( 4 )
+
+[node name="DR" type="VehicleWheel" parent="."]
+transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 1.73326, -0.653615, 1.9949 )
+wheel_roll_influence = 0.05
+wheel_radius = 1.0
+damping_compression = 1.0
+damping_relaxation = 1.0
+
+[node name="Wheel4" type="MeshInstance" parent="DR"]
+transform = Transform( -2, 0, -3.01992e-07, 0, 2, 0, 3.01992e-07, 0, -2, 0.132485, -0.0321749, 0.122525 )
+mesh = ExtResource( 2 )
+skin = SubResource( 2 )
+skeleton = NodePath("../../FR")
+material/0 = ExtResource( 4 )

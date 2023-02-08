@@ -6,7 +6,7 @@
 [ext_resource path="res://scens/Box.tscn" type="PackedScene" id=4]
 [ext_resource path="res://scens/Bucket.tscn" type="PackedScene" id=5]
 [ext_resource path="res://scens/reservoir.tscn" type="PackedScene" id=6]
-[ext_resource path="res://scens/Control.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Control.tscn" type="PackedScene" id=7]
 
 [node name="Main" type="Spatial"]
 
@@ -73,7 +73,7 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 30, 0, -40 )
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 40, 0, 0 )
 
 [node name="Ground22" parent="." instance=ExtResource( 2 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 40, 0, -10 )
+transform = Transform( 1, 0, 0, 0, 0.998678, 0.0513947, 0, -0.0513947, 0.998678, 40, 0, -10 )
 
 [node name="Ground23" parent="." instance=ExtResource( 2 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 40, 0, -20 )
@@ -1536,7 +1536,7 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 42, 6, 5 )
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 42, 8, 5 )
 
 [node name="Player" parent="." instance=ExtResource( 3 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 17, 0, -21 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 17, 5.92825, -21 )
 
 [node name="Box" parent="." instance=ExtResource( 4 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 31.4211, 1.98875, -0.125867 )
@@ -1557,7 +1557,7 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 23.6722, 3.22036, -0.0974216 )
 [node name="Bucket3" parent="." instance=ExtResource( 5 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 31.3102, 3.37904, -0.0974216 )
 
-[node name="Control" parent="." instance=ExtResource( 7 )]
-
 [node name="reservoir" parent="." instance=ExtResource( 6 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.46063, 1.00009, -36.204 )
+
+[node name="Control" parent="." instance=ExtResource( 7 )]
